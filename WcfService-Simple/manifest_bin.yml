@@ -1,0 +1,8 @@
+﻿---
+applications:
+- name: wcf-simple-bin
+  memory: 1G
+  health-check-type: none
+  buildpack: binary_buildpack
+  stack: windows2012R2
+  command: ..\tmp\lifecycle\WebAppServer.exe
