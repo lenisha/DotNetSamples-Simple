@@ -1,7 +1,7 @@
 ---
 applications:
-- name: wcf-simple
+- name: wcf-simple-hwc
   memory: 1G
   health-check-type: port
-  buildpack: hwc_buildpack_vdir
+  buildpack: hwc_buildpack
   stack: windows2012R2
