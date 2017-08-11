@@ -1,0 +1,13 @@
+﻿---
+applications:
+- name: console-app-bin
+  memory: 1G
+  health-check-type: http
+  health-check-http-endpoint: /health
+  buildpack: binary_buildpack
+  stack: windows2012R2
+  no-route: true
+  command: "./bin/Debug/ConsoleApp-Task.exe"
+
+  #Run Task
+  #cf run-task console-app-bin "bin/Debug/ConsoleApp-Task.exe dump" --name printenv
