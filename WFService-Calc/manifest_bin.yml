@@ -1,8 +1,9 @@
 ﻿---
 applications:
-- name: wcf-simple-bin
+- name: wf-calc-bin
   memory: 1G
   health-check-type: http
+  health-check-http-endpoint: /CalculatorService.xamlx 
   buildpack: binary_buildpack
   stack: windows2012R2
   command: ..\tmp\lifecycle\WebAppServer.exe

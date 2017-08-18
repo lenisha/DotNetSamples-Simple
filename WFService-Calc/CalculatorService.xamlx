@@ -1,0 +1,99 @@
+﻿<WorkflowService mc:Ignorable="sap" ConfigurationName="Service1" sap:VirtualizedContainerService.HintSize="307,455" Name="Service1" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:c="clr-namespace:CalculatorWFService;assembly=CalculatorWFService" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mv="clr-namespace:Microsoft.VisualBasic;assembly=System" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:s1="clr-namespace:System;assembly=System" xmlns:s2="clr-namespace:System;assembly=System.Xml" xmlns:s3="clr-namespace:System;assembly=System.Core" xmlns:s4="clr-namespace:System;assembly=System.ServiceModel" xmlns:sa="clr-namespace:System.Activities;assembly=System.Activities" xmlns:sad="clr-namespace:System.Activities.Debugger;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System" xmlns:scg1="clr-namespace:System.Collections.Generic;assembly=System.ServiceModel" xmlns:scg2="clr-namespace:System.Collections.Generic;assembly=System.Core" xmlns:scg3="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:sl="clr-namespace:System.Linq;assembly=System.Core" xmlns:st="clr-namespace:System.Text;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <p:Sequence DisplayName="Main Sequence" sad:XamlDebuggerXmlReader.FileName="C:\labs\CalculatorWFService\CalculatorWFService\CalculatorService.xamlx" sap:VirtualizedContainerService.HintSize="277,425" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+    <p:Sequence.Variables>
+      <p:Variable x:TypeArguments="CorrelationHandle" Name="handle" />
+      <p:Variable x:TypeArguments="x:Int32" Name="Operand1" />
+      <p:Variable x:TypeArguments="x:Int32" Name="Operand2" />
+      <p:Variable x:TypeArguments="x:String" Name="OperationName" />
+      <p:Variable x:TypeArguments="x:String" Name="Result" />
+    </p:Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg3:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Receive x:Name="__ReferenceID5" CanCreateInstance="True" DisplayName="ReceiveRequest" sap:VirtualizedContainerService.HintSize="255,86" OperationName="Calculate" ServiceContractName="ICalculate">
+      <Receive.CorrelationInitializers>
+        <RequestReplyCorrelationInitializer CorrelationHandle="[handle]" />
+      </Receive.CorrelationInitializers>
+      <ReceiveParametersContent>
+        <p:OutArgument x:TypeArguments="x:Int32" x:Key="parameter1">[Operand1]</p:OutArgument>
+        <p:OutArgument x:TypeArguments="x:Int32" x:Key="parameter2">[Operand2]</p:OutArgument>
+        <p:OutArgument x:TypeArguments="x:String" x:Key="operationName">[OperationName]</p:OutArgument>
+      </ReceiveParametersContent>
+    </Receive>
+    <p:Flowchart sap:VirtualizedContainerService.HintSize="684,636">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <av:Point x:Key="ShapeLocation">270,2.5</av:Point>
+          <av:Size x:Key="ShapeSize">60,75</av:Size>
+          <x:Double x:Key="Width">670</x:Double>
+          <av:PointCollection x:Key="ConnectorLocation">300,77.5 300,102.5</av:PointCollection>
+        </scg3:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <p:Flowchart.StartNode>
+        <x:Reference>__ReferenceID4</x:Reference>
+      </p:Flowchart.StartNode>
+      <p:FlowSwitch x:TypeArguments="x:String" x:Name="__ReferenceID4" Expression="[OperationName]" sap:VirtualizedContainerService.HintSize="60,75">
+        <p:FlowSwitch.Default>
+          <p:FlowStep x:Name="__ReferenceID3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+                <av:Point x:Key="ShapeLocation">470,400</av:Point>
+                <av:Size x:Key="ShapeSize">200,22</av:Size>
+              </scg3:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <c:CodeActivity1 sap:VirtualizedContainerService.HintSize="200,22" Text="Not implemented" result="[Result]" />
+          </p:FlowStep>
+        </p:FlowSwitch.Default>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">270,102.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <av:PointCollection x:Key="Default">330,121.25 570,121.25 570,400</av:PointCollection>
+            <av:PointCollection x:Key="addConnector">270,158.75 260,158.75 260,209 350,209 350,239</av:PointCollection>
+            <av:PointCollection x:Key="subtractConnector">270,140 220,140 220,289</av:PointCollection>
+            <av:PointCollection x:Key="multiplyConnector">270,121.25 110,121.25 110,329</av:PointCollection>
+          </scg3:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <p:FlowStep x:Key="add" x:Name="__ReferenceID0">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">250,239</av:Point>
+              <av:Size x:Key="ShapeSize">200,22</av:Size>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <c:CodeActivity1 sap:VirtualizedContainerService.HintSize="200,22" Text="[(Operand1 + Operand2).ToString()]" result="[Result]" />
+        </p:FlowStep>
+        <p:FlowStep x:Key="subtract" x:Name="__ReferenceID1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">120,289</av:Point>
+              <av:Size x:Key="ShapeSize">200,22</av:Size>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <c:CodeActivity1 sap:VirtualizedContainerService.HintSize="200,22" Text="[(Operand1 - Operand2).ToString()]" result="[Result]" />
+        </p:FlowStep>
+        <p:FlowStep x:Key="multiply" x:Name="__ReferenceID2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg3:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">10,329</av:Point>
+              <av:Size x:Key="ShapeSize">200,22</av:Size>
+            </scg3:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <c:CodeActivity1 sap:VirtualizedContainerService.HintSize="200,22" Text="[(Operand1 * Operand2).ToString()]" result="[Result]" />
+        </p:FlowStep>
+      </p:FlowSwitch>
+      <x:Reference>__ReferenceID0</x:Reference>
+      <x:Reference>__ReferenceID1</x:Reference>
+      <x:Reference>__ReferenceID2</x:Reference>
+      <x:Reference>__ReferenceID3</x:Reference>
+    </p:Flowchart>
+    <SendReply Request="{x:Reference __ReferenceID5}" DisplayName="SendResponse" sap:VirtualizedContainerService.HintSize="255,86">
+      <SendMessageContent>
+        <p:InArgument x:TypeArguments="x:String">[Result]</p:InArgument>
+      </SendMessageContent>
+    </SendReply>
+  </p:Sequence>
+</WorkflowService>
