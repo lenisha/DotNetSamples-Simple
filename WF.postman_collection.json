@@ -1,0 +1,90 @@
+{
+	"id": "4ce68543-5faf-91db-0ccc-62bba09b0c2e",
+	"name": "WF",
+	"description": "",
+	"order": [
+		"8e23a69c-c945-2891-90a7-8e4c98a47c5d",
+		"dd7bc142-1724-dc33-90a9-9aaba2758fdb"
+	],
+	"folders": [],
+	"folders_order": [],
+	"timestamp": 1503453709430,
+	"owner": "568288",
+	"public": false,
+	"requests": [
+		{
+			"id": "8e23a69c-c945-2891-90a7-8e4c98a47c5d",
+			"headers": "Content-Type: text/xml; charset=utf-8\nSOAPAction: \"http://tempuri.org/ICalculate/Calculate\"\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "text/xml; charset=utf-8",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "SOAPAction",
+					"value": "\"http://tempuri.org/ICalculate/Calculate\"",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "https://wf-calc-hwc.cfapps.pez.pivotal.io/CalculatorService.xamlx",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "4ce68543-5faf-91db-0ccc-62bba09b0c2e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "https://wf-calc-hwc.cfapps.pez.pivotal.io/CalculatorService.xamlx",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1503455707017,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  \r\n  <s:Body>\r\n    <Calculate xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://tempuri.org/\">\r\n      <parameter1>5</parameter1>\r\n      <parameter2>6</parameter2>\r\n      <operationName>add</operationName>\r\n    </Calculate>\r\n  </s:Body>\r\n</s:Envelope>"
+		},
+		{
+			"id": "dd7bc142-1724-dc33-90a9-9aaba2758fdb",
+			"headers": "Content-Type: application/xml\nSOAPAction: \"http://tempuri.org/ICalculate/Calculate\"\n",
+			"headerData": [
+				{
+					"key": "Content-Type",
+					"value": "application/xml",
+					"description": "",
+					"enabled": true
+				},
+				{
+					"key": "SOAPAction",
+					"value": "\"http://tempuri.org/ICalculate/Calculate\"",
+					"description": "",
+					"enabled": true
+				}
+			],
+			"url": "http://localhost:61542/CalculatorService.xamlx",
+			"queryParams": [],
+			"pathVariables": {},
+			"pathVariableData": [],
+			"preRequestScript": null,
+			"method": "POST",
+			"collectionId": "4ce68543-5faf-91db-0ccc-62bba09b0c2e",
+			"data": [],
+			"dataMode": "raw",
+			"name": "http://localhost:61542/CalculatorService.xamlx",
+			"description": "",
+			"descriptionFormat": "html",
+			"time": 1503455717641,
+			"version": 2,
+			"responses": [],
+			"tests": null,
+			"currentHelper": "normal",
+			"helperAttributes": {},
+			"rawModeData": "<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">\r\n  <s:Header>\r\n    <Action s:mustUnderstand=\"1\" xmlns=\"http://schemas.microsoft.com/ws/2005/05/addressing/none\">http://tempuri.org/ICalculate/Calculate</Action>\r\n    <ActivityId CorrelationId=\"d5a0286f-d99e-498a-835a-3bdf1386591a\" xmlns=\"http://schemas.microsoft.com/2004/09/ServiceModel/Diagnostics\">b88d040b-3692-412c-87e1-efdbed500097</ActivityId>\r\n  </s:Header>\r\n  <s:Body>\r\n    <Calculate xmlns:i=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns=\"http://tempuri.org/\">\r\n      <parameter1>5</parameter1>\r\n      <parameter2>6</parameter2>\r\n      <operationName>add</operationName>\r\n    </Calculate>\r\n  </s:Body>\r\n</s:Envelope>"
+		}
+	]
+}
