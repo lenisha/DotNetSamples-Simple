@@ -1,0 +1,9 @@
+﻿---
+applications:
+- name: wf-async-bin
+  memory: 1G
+  health-check-type: http
+  health-check-http-endpoint: / 
+  buildpack: binary_buildpack
+  stack: windows2012R2
+  command: ..\tmp\lifecycle\WebAppServer.exe

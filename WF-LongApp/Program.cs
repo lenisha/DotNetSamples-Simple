@@ -15,12 +15,12 @@ namespace WF_LongApp
 	{
 		static void Main(string[] args)
 		{
-			
+
 			StartListener();
-			
+
 		}
 
-		static void StartWorkflowAsync()
+		static void StartSimpleWorkflowAsync()
 		{
 			Activity wf = new Workflow1();
 			AutoResetEvent syncEvent = new AutoResetEvent(false);
@@ -48,6 +48,59 @@ namespace WF_LongApp
 			syncEvent.WaitOne();
 		}
 
+		static WorkflowApplication StartWorkflowAsync()
+		{
+			Variable<string> name = new Variable<string>();
+
+			Activity wf = new Sequence
+			{
+				Variables = { name },
+				Activities =
+				 {
+					 new WriteLine
+					 {
+						 Text = "What is your name?"
+					 },
+					 new ReadLine
+					 {
+						 BookmarkName = "UserName",
+						 Result = new OutArgument<string>(name)
+
+					 },
+					 new WriteLine
+					 {
+						 Text = new InArgument<string>((env) =>
+							 ("Hello, " + name.Get(env)))
+					 }
+				 }
+			};
+
+			// Create a WorkflowApplication instance.
+			WorkflowApplication wfApp = new WorkflowApplication(wf);
+
+			// Workflow lifecycle events omitted except idle.
+			AutoResetEvent idleEvent = new AutoResetEvent(false);
+
+			wfApp.Idle = delegate (WorkflowApplicationIdleEventArgs e)
+			{
+				idleEvent.Set();
+			};
+
+			// Run the workflow.
+			wfApp.Run();
+
+			// Wait for the workflow to go idle before gathering
+			// the user's input.
+			idleEvent.WaitOne();
+
+			return wfApp;
+
+			
+
+		}
+
+
+
 		static void StartListener()
 		{
 			// get PORT assigned to app from PCF env var
@@ -68,6 +121,7 @@ namespace WF_LongApp
 			server.Start();
 			Console.WriteLine($"Server has started on {localip}:{port}.\r\nWaiting for a connection...");
 
+			WorkflowApplication wfApp = null;
 			// loop forever and handle any connections
 			while (true)
 			{
@@ -90,16 +144,34 @@ namespace WF_LongApp
 				if (new Regex("^GET /start").IsMatch(data))
 				{
 					Console.WriteLine("START request");
-					StartWorkflowAsync();
+					wfApp = StartWorkflowAsync();
 
 					var res = Encoding.UTF8.GetBytes("HTTP/1.1 200 OK\r\n\r\n Workflow invoked\r\n");
+					stream.Write(res, 0, res.Length);
+					stream.Close();
+				}
+				else if (new Regex("^GET /resume").IsMatch(data))
+				{
+					// Gather the user's input and resume the bookmark.
+					// Bookmark resumption only occurs when the workflow
+					// is idle. If a call to ResumeBookmark is made and the workflow
+					// is not idle, ResumeBookmark blocks until the workflow becomes
+					// idle before resuming the bookmark.
+					BookmarkResumptionResult result = wfApp.ResumeBookmark("UserName",
+						"Pivotal");
+
+					// Possible BookmarkResumptionResult values:
+					// Success, NotFound, or NotReady
+					Console.WriteLine("BookmarkResumptionResult: {0}", result);
+
+					var res = Encoding.UTF8.GetBytes("HTTP/1.1 200 OK\r\n\r\n Workflow resumed\r\n");
 					stream.Write(res, 0, res.Length);
 					stream.Close();
 				}
 				else if (new Regex("^GET /").IsMatch(data))
 				{
 					Console.WriteLine("health request");
-				
+
 
 					var res = Encoding.UTF8.GetBytes("HTTP/1.1 200 OK\r\n\r\n");
 					stream.Write(res, 0, res.Length);
@@ -112,5 +184,33 @@ namespace WF_LongApp
 			}
 		}
 
+	}
+
+	public sealed class ReadLine : NativeActivity<string>
+	{
+		[RequiredArgument]
+		public InArgument<string> BookmarkName { get; set; }
+
+		protected override void Execute(NativeActivityContext context)
+		{
+			// Create a Bookmark and wait for it to be resumed.
+			context.CreateBookmark(BookmarkName.Get(context),
+				new BookmarkCallback(OnResumeBookmark));
+		}
+
+		// NativeActivity derived activities that do asynchronous operations by calling 
+		// one of the CreateBookmark overloads defined on System.Activities.NativeActivityContext 
+		// must override the CanInduceIdle property and return true.
+		protected override bool CanInduceIdle
+		{
+			get { return true; }
+		}
+
+		public void OnResumeBookmark(NativeActivityContext context, Bookmark bookmark, object obj)
+		{
+			// When the Bookmark is resumed, assign its value to
+			// the Result argument.
+			Result.Set(context, (string)obj);
+		}
 	}
 }
