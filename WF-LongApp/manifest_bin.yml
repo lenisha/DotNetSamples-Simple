@@ -1,0 +1,11 @@
+﻿---
+applications:
+- name: wf-long-bin
+  memory: 1G
+  health-check-type: none
+  buildpack: binary_buildpack
+  stack: windows2012R2
+  #no-route: true
+  command: ".\\bin\\Debug\\WF-LongApp.exe"  
+  #Run Task
+  #/start to start workflow
