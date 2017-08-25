@@ -1,0 +1,14 @@
+﻿---
+applications:
+- name: wcf-tcp-bin
+  memory: 1G
+  health-check-type: port
+  buildpack: binary_buildpack
+  stack: windows2012R2
+  command: "./bin/service.exe"
+  routes:
+  - route: tcp.cfapps.haas-51.pez.pivotal.io:9743
+
+  # Map tcp route manually / route above will do it!!
+  # cf create-route <space> tcp.cfapps.haas-51.pez.pivotal.io --random-port
+  # cf map-route wcf-tcp-bin  tcp.cfapps.haas-51.pez.pivotal.io  --port 9743

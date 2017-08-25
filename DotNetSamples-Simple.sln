@@ -7,6 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService-Simple", "WcfSer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp-Task", "ConsoleApp-Task\ConsoleApp-Task.csproj", "{A897FC37-17A0-4536-AD62-FD04BB5DB088}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService-Tcp", "WcfService-Tcp\service\WcfService-Tcp.csproj", "{66C5F965-7C66-479A-9960-A3CA6080A71B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WcfService-TcpClient", "WcfService-Tcp\client\WcfService-TcpClient.csproj", "{F6D8FC2E-62D0-4554-AC3E-1964042590E3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{79860536-AB4C-4087-A948-BE3D87EE60F1}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +40,22 @@ Global
 		{A897FC37-17A0-4536-AD62-FD04BB5DB088}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A897FC37-17A0-4536-AD62-FD04BB5DB088}.Release|x86.ActiveCfg = Release|Any CPU
 		{A897FC37-17A0-4536-AD62-FD04BB5DB088}.Release|x86.Build.0 = Release|Any CPU
+		{66C5F965-7C66-479A-9960-A3CA6080A71B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66C5F965-7C66-479A-9960-A3CA6080A71B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66C5F965-7C66-479A-9960-A3CA6080A71B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{66C5F965-7C66-479A-9960-A3CA6080A71B}.Debug|x86.Build.0 = Debug|Any CPU
+		{66C5F965-7C66-479A-9960-A3CA6080A71B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66C5F965-7C66-479A-9960-A3CA6080A71B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66C5F965-7C66-479A-9960-A3CA6080A71B}.Release|x86.ActiveCfg = Release|Any CPU
+		{66C5F965-7C66-479A-9960-A3CA6080A71B}.Release|x86.Build.0 = Release|Any CPU
+		{F6D8FC2E-62D0-4554-AC3E-1964042590E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6D8FC2E-62D0-4554-AC3E-1964042590E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6D8FC2E-62D0-4554-AC3E-1964042590E3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{F6D8FC2E-62D0-4554-AC3E-1964042590E3}.Debug|x86.Build.0 = Debug|Any CPU
+		{F6D8FC2E-62D0-4554-AC3E-1964042590E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6D8FC2E-62D0-4554-AC3E-1964042590E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6D8FC2E-62D0-4554-AC3E-1964042590E3}.Release|x86.ActiveCfg = Release|Any CPU
+		{F6D8FC2E-62D0-4554-AC3E-1964042590E3}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
