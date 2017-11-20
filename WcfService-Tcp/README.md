@@ -21,6 +21,18 @@ cf push -f manifest_bin.yml
 cf create-route pcfdev-space tcp.local.pcfdev.io --port 9473
 cf map-route gs-spring tcp.local.pcfdev.io --port 9473
 ```
+* Output from setup
+```
+$ cf routes
+Getting routes for org dev / space dev as admin ...
+
+space   host             domain                              port   path   type   apps           service
+dev     wf-web-bin       cfapps.haas-51.pez.pivotal.io                            wf-web-bin
+dev     wf-async-hwc     cfapps.haas-51.pez.pivotal.io                            wf-async-hwc
+dev                      tcp.cfapps.haas-51.pez.pivotal.io   9743          tcp    wcf-tcp-bin
+
+```
+
 ### Run tcp client to test
 Point client to the service route in app.config
 ```

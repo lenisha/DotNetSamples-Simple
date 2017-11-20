@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Linq;
 using System.Runtime.Serialization;
+using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
 using System.ServiceModel.Activation;
 using System.ServiceModel.Web;
@@ -23,8 +24,22 @@ namespace WcfService_Simple
         [WebGet(UriTemplate = "/hello",ResponseFormat = WebMessageFormat.Json)]
         public String DoWork()
         {
-            // Add your operation implementation here
-            return "Hello rest:" + Thread.CurrentPrincipal.Identity.ToString();
+
+			X509Store store = new X509Store(StoreLocation.CurrentUser);
+			store.Open(OpenFlags.ReadOnly);
+
+			StringBuilder certs = new StringBuilder();
+			var certificates = store.Certificates;
+			foreach (var certificate in certificates)
+			{
+				var friendlyName = certificate.FriendlyName;
+				var xname = certificate.GetName(); //obsolete
+				certs.Append(xname + " ");
+			}
+			store.Close();
+
+			// Add your operation implementation here
+			return "Hello rest:"+ certs.ToString();
         }
 
 

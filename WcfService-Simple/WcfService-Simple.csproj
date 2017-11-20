@@ -22,6 +22,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -83,6 +84,8 @@
     <Compile Include="Service2.svc.cs">
       <DependentUpon>Service2.svc</DependentUpon>
     </Compile>
+    <Compile Include="utils\Base64Enc.cs" />
+    <Compile Include="utils\DesMethods.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
