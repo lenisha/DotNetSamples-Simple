@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Linq;
+using System.Net;
 using System.Runtime.Serialization;
 using System.Security.Cryptography.X509Certificates;
 using System.ServiceModel;
@@ -25,6 +26,9 @@ namespace WcfService_Simple
         public String DoWork()
         {
 
+			IncomingWebRequestContext request = WebOperationContext.Current.IncomingRequest;
+			WebHeaderCollection headers = request.Headers;
+			
 			X509Store store = new X509Store(StoreLocation.CurrentUser);
 			store.Open(OpenFlags.ReadOnly);
 
@@ -35,11 +39,20 @@ namespace WcfService_Simple
 				var friendlyName = certificate.FriendlyName;
 				var xname = certificate.GetName(); //obsolete
 				certs.Append(xname + " ");
+				try
+				{
+					if (certificate.HasPrivateKey)
+						certs.Append(" private key size:" + certificate.PrivateKey.KeySize);
+				}
+				catch (Exception ex)
+				{
+					certs.Append("Exception: "+ex.Message);
+				}
 			}
 			store.Close();
 
 			// Add your operation implementation here
-			return "Hello rest:"+ certs.ToString();
+			return "Certificates:"+ certs.ToString();
         }
 
 
